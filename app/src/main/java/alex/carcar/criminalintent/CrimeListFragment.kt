@@ -65,16 +65,42 @@ class CrimeListFragment : Fragment() {
         }
 
         override fun onClick(v: View?) {
-            Toast.makeText(context, "${crime.title} pressed!", Toast.LENGTH_SHORT).show()
+            if (crime.requiresPolice  && !crime.isSolved) {
+                Toast.makeText(context, "Oh oh, I am calling the police", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(context, "${crime.title} pressed!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
     private inner class CrimeAdapter(var crimes: List<Crime>) :
         RecyclerView.Adapter<CrimeHolder>() {
 
+        private val CRIME_NORMAL = 0
+        private val CRIME_SERIOUS = 1
+        private val CRIME_SOLVED = 2
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CrimeHolder {
-            val view = layoutInflater.inflate(R.layout.list_item_crime, parent, false)
+            var layout = if (viewType == CRIME_SERIOUS) {
+                R.layout.list_item_crime_serious
+            } else if (viewType == CRIME_SOLVED){
+                R.layout.list_item_crime_solved
+            } else {
+                R.layout.list_item_crime
+            }
+            val view = layoutInflater.inflate(layout, parent, false)
             return CrimeHolder(view)
+        }
+
+        override fun getItemViewType(position: Int): Int {
+            val crime = this.crimes[position]
+            if (crime.requiresPolice && !crime.isSolved) {
+                return CRIME_SERIOUS
+            } else if (crime.isSolved){
+                return CRIME_SOLVED
+            } else {
+                return CRIME_NORMAL
+            }
         }
 
         override fun getItemCount() = crimes.size
