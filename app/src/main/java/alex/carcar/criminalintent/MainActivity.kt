@@ -3,6 +3,7 @@ package alex.carcar.criminalintent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
+// Chapter 9: Displaying Lists with RecyclerView (Final App)
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
