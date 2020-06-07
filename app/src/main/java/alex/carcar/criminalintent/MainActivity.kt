@@ -2,7 +2,7 @@ package alex.carcar.criminalintent
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
+// Chapter 10: Creating User Interfaces with Layouts and Widgets
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
