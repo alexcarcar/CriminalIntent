@@ -3,6 +3,7 @@ package alex.carcar.criminalintent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
+// Chapter 11: Databases and the Room Library
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
