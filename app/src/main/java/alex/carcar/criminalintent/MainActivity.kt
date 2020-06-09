@@ -1,12 +1,11 @@
 package alex.carcar.criminalintent
 
-import alex.carcar.criminalintent.CrimeListFragment.Companion.newInstance
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
 private const val TAG = "MainActivity"
+
 class MainActivity : AppCompatActivity(), CrimeListFragment.Callbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
