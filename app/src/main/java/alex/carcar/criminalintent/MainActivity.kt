@@ -6,6 +6,8 @@ import java.util.*
 
 private const val TAG = "MainActivity"
 
+// Chapter 12: Fragment Navigation
+
 class MainActivity : AppCompatActivity(), CrimeListFragment.Callbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
