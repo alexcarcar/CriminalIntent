@@ -7,4 +7,5 @@
     <string name="crime_title">Crime Title</string>
     <string name="crime_date">Crime Date</string>
     <string name="hand_cuffs">Hand cuffs</string>
+    <string name="select_new_time">Select new time</string>
 </resources>
