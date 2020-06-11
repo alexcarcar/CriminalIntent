@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import java.util.*
@@ -61,6 +62,11 @@ class CrimeFragment : Fragment(), DatePickerFragment.Callbacks {
         val titleWatcher = object : TextWatcher {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 crime.title = s.toString()
+                val appCompatActivity = activity as AppCompatActivity
+                val appBar = appCompatActivity.supportActionBar
+                if (appBar != null) {
+                    appBar.title = crime.title
+                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
