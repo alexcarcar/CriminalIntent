@@ -6,6 +6,8 @@ import java.util.*
 
 private const val TAG = "MainActivity"
 
+// Chapter 14: The App Bar (with Add Crime menu item)
+
 class MainActivity : AppCompatActivity(), CrimeListFragment.Callbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
