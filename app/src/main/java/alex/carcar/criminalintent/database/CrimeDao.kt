@@ -22,4 +22,7 @@ interface CrimeDao {
 
     @Insert
     fun addCrime(crime: Crime)
+
+    @Query("DELETE FROM crime")
+    fun clearAllCrimes()
 }

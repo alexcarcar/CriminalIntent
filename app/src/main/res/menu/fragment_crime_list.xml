@@ -6,4 +6,9 @@
         android:icon="@drawable/ic_menu_add"
         android:title="@string/new_crime"
         app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/trash_crimes"
+        android:icon="@drawable/ic_menu_trash"
+        android:title="@string/trash_all_crimes"
+        app:showAsAction="ifRoom|withText" />
 </menu>
