@@ -25,6 +25,7 @@ private const val ARG_CRIME_ID = "crime_id"
 private const val DIALOG_DATE = "DialogDate"
 private const val REQUEST_DATE = 0
 private const val REQUEST_CONTACT = 1
+private const val REQUEST_PHONE = 1
 private const val DATE_FORMAT = "EEE, MMM, dd"
 
 class CrimeFragment : Fragment(), DatePickerFragment.Callbacks {
@@ -34,6 +35,7 @@ class CrimeFragment : Fragment(), DatePickerFragment.Callbacks {
     private lateinit var solvedCheckBox: CheckBox
     private lateinit var reportButton: Button
     private lateinit var suspectButton: Button
+    private lateinit var phoneButton: Button
     private val crimeDetailViewModel: CrimeDetailViewModel by lazy {
         ViewModelProviders.of(this).get(CrimeDetailViewModel::class.java)
     }
@@ -54,6 +56,7 @@ class CrimeFragment : Fragment(), DatePickerFragment.Callbacks {
         solvedCheckBox = view.findViewById(R.id.crime_solved) as CheckBox
         reportButton = view.findViewById(R.id.crime_report) as Button
         suspectButton = view.findViewById(R.id.crime_suspect) as Button
+        phoneButton = view.findViewById(R.id.call_suspect) as Button
         return view
     }
 
@@ -114,6 +117,13 @@ class CrimeFragment : Fragment(), DatePickerFragment.Callbacks {
             val resolvedActivity: ResolveInfo? =
                 packageManager.resolveActivity(pickContactIntent, PackageManager.MATCH_DEFAULT_ONLY)
             if (resolvedActivity == null) isEnabled = false
+        }
+
+        phoneButton.apply {
+            val phoneIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:5551234"))
+            setOnClickListener {
+                startActivity(phoneIntent)
+            }
         }
     }
 
