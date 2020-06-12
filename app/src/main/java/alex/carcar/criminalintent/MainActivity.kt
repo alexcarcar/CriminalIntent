@@ -6,6 +6,7 @@ import java.util.*
 
 private const val TAG = "MainActivity"
 
+// Chapter 15: Implicit Intents
 class MainActivity : AppCompatActivity(), CrimeListFragment.Callbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
