@@ -6,6 +6,8 @@ import java.util.*
 
 private const val TAG = "MainActivity"
 
+// Chapter 16: Taking Pictures with Intents
+
 class MainActivity : AppCompatActivity(), CrimeListFragment.Callbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
