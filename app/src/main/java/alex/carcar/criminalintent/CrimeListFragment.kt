@@ -2,11 +2,11 @@ package alex.carcar.criminalintent
 
 import android.content.Context
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -112,7 +112,10 @@ class CrimeListFragment : Fragment() {
         fun bind(crime: Crime) {
             this.crime = crime
             titleTextView.text = this.crime.title
-            dateTextView.text = this.crime.date.toString()
+            val ds = DateFormat.getMediumDateFormat(context).format(this.crime.date).toString()
+            val ts = DateFormat.getTimeFormat(context).format(this.crime.date).toString()
+            val dateString = "$ds $ts"
+            dateTextView.text = dateString
             solvedImageView.visibility = if (crime.isSolved) {
                 View.VISIBLE
             } else {
