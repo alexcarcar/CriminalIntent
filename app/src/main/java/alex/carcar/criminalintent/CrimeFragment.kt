@@ -11,9 +11,11 @@ import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.format.DateFormat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.*
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
@@ -67,6 +69,7 @@ class CrimeFragment : Fragment(), DatePickerFragment.Callbacks {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        photoFile = File("")
         crimeDetailViewModel.crimeLiveData.observe(
             viewLifecycleOwner,
             androidx.lifecycle.Observer { crime ->
@@ -81,6 +84,14 @@ class CrimeFragment : Fragment(), DatePickerFragment.Callbacks {
                     updateUI()
                 }
             })
+        photoView.viewTreeObserver.addOnGlobalLayoutListener(object :
+            ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                photoView.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                Log.d("Log", "-> " + photoView.height + "x" + photoView.width)
+                updatePhotoView()
+            }
+        })
     }
 
     override fun onStart() {
@@ -185,8 +196,8 @@ class CrimeFragment : Fragment(), DatePickerFragment.Callbacks {
     }
 
     private fun updatePhotoView() {
-        if (photoFile.exists()) {
-            val bitmap = getScaledBitmap(photoFile.path, requireActivity())
+        if (photoFile.exists() && photoView.width > 0 && photoView.height > 0) {
+            val bitmap = getScaledBitmap(photoFile.path, photoView.width, photoView.height)
             photoView.setImageBitmap(bitmap)
         } else {
             photoView.setImageDrawable(null)
