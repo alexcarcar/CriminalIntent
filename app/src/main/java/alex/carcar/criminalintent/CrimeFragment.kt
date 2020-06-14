@@ -24,6 +24,7 @@ import java.util.*
 private const val TAG = "CrimeFragment"
 private const val ARG_CRIME_ID = "crime_id"
 private const val DIALOG_DATE = "DialogDate"
+private const val DIALOG_PHOTO = "DialogPhoto"
 private const val REQUEST_DATE = 0
 private const val REQUEST_CONTACT = 1
 private const val REQUEST_PHOTO = 2
@@ -104,6 +105,12 @@ class CrimeFragment : Fragment(), DatePickerFragment.Callbacks {
             DatePickerFragment.newInstance(crime.date).apply {
                 setTargetFragment(this@CrimeFragment, REQUEST_DATE)
                 show(this@CrimeFragment.requireFragmentManager(), DIALOG_DATE)
+            }
+        }
+
+        photoView.setOnClickListener {
+            CrimePhotoFragment.newInstance(this.photoFile).apply {
+                show(this@CrimeFragment.requireFragmentManager(), DIALOG_PHOTO)
             }
         }
 
