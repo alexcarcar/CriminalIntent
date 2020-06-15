@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -62,8 +63,15 @@
         android:layout_height="wrap_content"
         android:text="@string/crime_details_label" />
 
+    <TextView
+        android:id="@+id/crime_date_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/crime_date"
+        android:text="@string/crime_date" />
+
     <Button
-        android:id="@+id/crime_date"
+        android:id="@id/crime_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Wed Nov 14 11:56 PST 2019" />
