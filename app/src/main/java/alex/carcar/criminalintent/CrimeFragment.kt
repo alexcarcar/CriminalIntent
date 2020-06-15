@@ -1,6 +1,7 @@
 package alex.carcar.criminalintent
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
@@ -14,12 +15,15 @@ import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.accessibility.AccessibilityEvent
+import android.view.accessibility.AccessibilityManager
 import android.widget.*
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import java.io.File
 import java.util.*
+
 
 private const val TAG = "CrimeFragment"
 private const val ARG_CRIME_ID = "crime_id"
@@ -223,6 +227,16 @@ class CrimeFragment : Fragment(), DatePickerFragment.Callbacks {
                     Intent.FLAG_GRANT_WRITE_URI_PERMISSION
                 )
                 updatePhotoView()
+                val manager =
+                    context?.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
+                if (manager.isEnabled) {
+                    val e = AccessibilityEvent.obtain()
+                    e.eventType = AccessibilityEvent.TYPE_ANNOUNCEMENT
+                    e.className = javaClass.name
+                    e.packageName = context!!.packageName
+                    e.text.add("new photo loaded")
+                    manager.sendAccessibilityEvent(e)
+                }
             }
         }
     }
