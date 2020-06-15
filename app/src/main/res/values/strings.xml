@@ -14,6 +14,10 @@
         The crime was discovered on %2$s. %3$s, and %4$s
     </string>
     <string name="crime_report_solved">The case is solved</string>
+    <string name="crime_photo_button_description">Take photo of crime scene</string>
+    <string name="crime_photo_no_image_description">Crime scene photo (not set)</string>
+    <string name="crime_photo_image_description">Crime scene photo (set)</string>
+
     <string name="crime_report_unsolved">The is case is not solved</string>
     <string name="crime_report_no_suspect">there is no suspect.</string>
     <string name="crime_report_suspect">the suspect is %s.</string>
