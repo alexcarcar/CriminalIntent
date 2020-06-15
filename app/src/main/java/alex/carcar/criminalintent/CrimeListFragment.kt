@@ -2,11 +2,11 @@ package alex.carcar.criminalintent
 
 import android.content.Context
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -113,11 +113,15 @@ class CrimeListFragment : Fragment() {
             this.crime = crime
             titleTextView.text = this.crime.title
             dateTextView.text = this.crime.date.toString()
-            solvedImageView.visibility = if (crime.isSolved) {
-                View.VISIBLE
+            var talk = "observed on ${DateFormat.getLongDateFormat(context).format(crime.date)}"
+            if (crime.isSolved) {
+                talk += " crime solved"
+                solvedImageView.alpha = 1f
             } else {
-                View.GONE
+                talk += " crime not solved"
+                solvedImageView.alpha = 0.1f
             }
+            solvedImageView.contentDescription = talk
         }
 
         override fun onClick(v: View?) {
